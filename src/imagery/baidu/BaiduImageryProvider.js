@@ -16,6 +16,15 @@ const TILE_URL = {
     '//its.map.baidu.com:8002/traffic/TrafficTileService?time={time}&label={labelStyle}&v=016&level={z}&x={x}&y={y}&scaler=2'
 }
 class BaiduImageryProvider {
+	    /**
+    * 百度地图服务类
+    * @alias BaiduImageryProvider
+    * @constructor
+    * @private
+    * @param {Object} options 包含以下参数的对象
+    * @param {String} [options.url] 地图服务地址
+    * @param {String} [options.crs] 坐标类型，可填"BD09"或"WGS84"，前者表示使用百度自身的坐标，后者表示可以将百度坐标投影到WGS84
+    */ 
   constructor(options = {}) {
     this._url =
       options.url ||
@@ -27,7 +36,7 @@ class BaiduImageryProvider {
     this._tileHeight = 256
     this._maximumLevel = 18
     this._crs = options.crs || 'BD09'
-    if (options.crs === 'WGS84') {
+    if (options.crs === 'WGS84') {//投影到WGS84坐标
       let resolutions = []
       for (let i = 0; i < 19; i++) {
         resolutions[i] = 256 * Math.pow(2, 18 - i)
@@ -43,7 +52,7 @@ class BaiduImageryProvider {
           12474104.17
         )
       })
-    } else {
+    } else {//直接使用BD09坐标
       this._tilingScheme = new Cesium.WebMercatorTilingScheme({
         rectangleSouthwestInMeters: new Cesium.Cartesian2(-33554054, -33746824),
         rectangleNortheastInMeters: new Cesium.Cartesian2(33554054, 33746824)
@@ -135,13 +144,15 @@ class BaiduImageryProvider {
 
   getTileCredits(x, y, level) {}
 
-/**
- * Request Image
- * @param x
- * @param y
- * @param level
- * @returns {Promise<HTMLImageElement | HTMLCanvasElement>}
- */
+    /**
+     * 请求图片
+     * @private
+     * @param {Number} x 瓦片X坐标
+     * @param {Number} y 瓦片Y坐标
+     * @param {Number} level 平铺级别
+     * @param {Request} request 请求对象。仅供内部使用
+     * @returns {Promise.<HTMLImageElement|HTMLCanvasElement>|undefined} 请求影像数据异步请求
+     */
   requestImage(x, y, level) {
     if (!this.ready) {
       throw new Cesium.DeveloperError(

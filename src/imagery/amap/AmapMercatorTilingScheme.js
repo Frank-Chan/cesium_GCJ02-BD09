@@ -6,11 +6,18 @@
 import CoordTransform from '../../transform/CoordTransform'
 
 class AmapMercatorTilingScheme extends Cesium.WebMercatorTilingScheme {
+   /**
+   * 高德墨卡托瓦片方案
+   * @constructor
+   * @extends AmapMercatorTilingScheme
+   * @private
+   * @param {*} options 
+   */
   constructor(options) {
     super(options)
     let projection = new Cesium.WebMercatorProjection()
     this._projection.project = function(cartographic, result) {
-      result = CoordTransform.WGS84ToGCJ02(
+      result = CoordTransform.wgs84togcj02(
         Cesium.Math.toDegrees(cartographic.longitude),
         Cesium.Math.toDegrees(cartographic.latitude)
       )
@@ -24,7 +31,7 @@ class AmapMercatorTilingScheme extends Cesium.WebMercatorTilingScheme {
     }
     this._projection.unproject = function(cartesian, result) {
       let cartographic = projection.unproject(cartesian)
-      result = CoordTransform.GCJ02ToWGS84(
+      result = CoordTransform.gcj02towgs84(
         Cesium.Math.toDegrees(cartographic.longitude),
         Cesium.Math.toDegrees(cartographic.latitude)
       )

@@ -1,22 +1,25 @@
-/**
- * @Author: Caven
- * @Date: 2021-01-31 19:22:04
- */
-
 import BaiduMercatorProjection from './BaiduMercatorProjection'
 import CoordTransform from '../../transform/CoordTransform'
 
 class BaiduMercatorTilingScheme extends Cesium.WebMercatorTilingScheme {
+
+  /**
+   * 百度墨卡托瓦片方案
+   * @constructor
+   * @extends WebMercatorTilingScheme
+   * @private
+   * @param {*} options 
+   */
   constructor(options) {
     super(options)
     let projection = new BaiduMercatorProjection()
     this._projection.project = function(cartographic, result) {
       result = result || {}
-      result = CoordTransform.WGS84ToGCJ02(
+      result = CoordTransform.wgs84togcj02(
         Cesium.Math.toDegrees(cartographic.longitude),
         Cesium.Math.toDegrees(cartographic.latitude)
       )
-      result = CoordTransform.GCJ02ToBD09(result[0], result[1])
+      result = CoordTransform.gcj02tobd09(result[0], result[1])
       result[0] = Math.min(result[0], 180)
       result[0] = Math.max(result[0], -180)
       result[1] = Math.min(result[1], 74.000022)
@@ -33,8 +36,8 @@ class BaiduMercatorTilingScheme extends Cesium.WebMercatorTilingScheme {
         lng: cartesian.x,
         lat: cartesian.y
       })
-      result = CoordTransform.BD09ToGCJ02(result.lng, result.lat)
-      result = CoordTransform.GCJ02ToWGS84(result[0], result[1])
+      result = CoordTransform.bd09togcj02(result.lng, result.lat)
+      result = CoordTransform.gcj02towgs84(result[0], result[1])
       return new Cesium.Cartographic(
         Cesium.Math.toRadians(result[0]),
         Cesium.Math.toRadians(result[1])

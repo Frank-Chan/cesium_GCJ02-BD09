@@ -1,8 +1,3 @@
-/**
- * @Author: Caven
- * @Date: 2021-01-30 22:41:41
- */
-
 const EARTH_RADIUS = 6370996.81
 const MC_BAND = [12890594.86, 8362377.87, 5591021, 3481989.83, 1678043.12, 0]
 const LL_BAND = [75, 60, 45, 30, 15, 0]
@@ -156,10 +151,21 @@ const LL2MC = [
 ]
 
 class BaiduMercatorProjection {
+  /**
+   * 百度墨卡托投影
+   * @constructor
+   * @private
+   */
   constructor() {
     this.isWgs84 = false
   }
-
+  
+  /**
+   * 根据平面直角坐标计算两点间距离;
+   * @param {*} point1 
+   * @param {*} point2 
+   * @returns {Number} 返回两点间的距离
+   */
   getDistanceByMC(point1, point2) {
     if (!point1 || !point2) {
       return 0
