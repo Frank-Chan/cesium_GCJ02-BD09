@@ -1,4 +1,4 @@
-# cesium-map
+# cesium_GCJ02-BD09
 
 <p>
 <img src="https://img.shields.io/github/workflow/status/dvgis/cesium-map/build"/>
@@ -7,7 +7,7 @@
 <img src="https://img.shields.io/npm/dw/@dvgis/cesium-map?logo=npm"/>
 </p>
 
-> Cesium 地图插件，用于添加国内各大地图厂商的地图
+> Cesium 地图插件，用于添加国内各大地图厂商的地图，主要实现BD09和GCJ02到WGS84坐标系的转换。
 
 ```warning
  使用前引入 Cesium 框架

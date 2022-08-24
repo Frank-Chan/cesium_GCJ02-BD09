@@ -135,6 +135,13 @@ class BaiduImageryProvider {
 
   getTileCredits(x, y, level) {}
 
+/**
+ * Request Image
+ * @param x
+ * @param y
+ * @param level
+ * @returns {Promise<HTMLImageElement | HTMLCanvasElement>}
+ */
   requestImage(x, y, level) {
     if (!this.ready) {
       throw new Cesium.DeveloperError(
