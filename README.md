@@ -57,7 +57,6 @@ viewer.imageryLayers.addImageryProvider(
 var options = {
   style: 1 //style: img、1：经典
 }
-
 viewer.imageryLayers.addImageryProvider(
   new Cesium.TencentImageryProvider(options)
 )
