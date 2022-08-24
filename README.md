@@ -10,10 +10,10 @@
 > Cesium 地图插件，用于添加国内各大地图厂商的地图，主要实现BD09和GCJ02到WGS84坐标系的转换。
 
 ```warning
- 使用前引入 Cesium 框架
+ 使用前需引入 Cesium 框架
 ```
 
-## 安装
+# 安装
 
 `NPM / YARN`
 
@@ -33,6 +33,7 @@ require('@dvgis/cesium-map')
 <script src="https://cdn.jsdelivr.net/npm/@dvgis/cesium-map"></script>
 ```
 
+# 使用
 
 ## BaiduImageryProvider
 

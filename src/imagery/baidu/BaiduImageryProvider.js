@@ -1,8 +1,3 @@
-/**
- * @Author: Caven
- * @Date: 2020-01-15 20:27:27
- */
-
 import BaiduMercatorTilingScheme from './BaiduMercatorTilingScheme'
 
 const TILE_URL = {

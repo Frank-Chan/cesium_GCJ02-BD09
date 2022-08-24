@@ -1,8 +1,3 @@
-/**
- * @Author: Caven
- * @Date: 2021-01-31 22:07:05
- */
-
 import CoordTransform from '../../transform/CoordTransform'
 
 class AmapMercatorTilingScheme extends Cesium.WebMercatorTilingScheme {
